@@ -2,6 +2,7 @@
 
 from app.routers.applications import router as applications_router
 from app.routers.ats import router as ats_router
+from app.routers.careerfit_ml import router as careerfit_ml_router
 from app.routers.chatgpt import callback_router as chatgpt_callback_router
 from app.routers.chatgpt import router as chatgpt_router
 from app.routers.config import router as config_router
@@ -24,4 +25,5 @@ __all__ = [
     "chatgpt_router",
     "chatgpt_callback_router",
     "writing_router",
+    "careerfit_ml_router",
 ]

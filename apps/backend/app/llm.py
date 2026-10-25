@@ -397,6 +397,11 @@ def _reasoning_effort_kwarg(
     """
     if not reasoning_effort:
         return {}
+    if config.provider == "groq":
+        if reasoning_effort in ("minimal", "none"):
+            reasoning_effort = "low"
+        elif reasoning_effort not in ("low", "medium", "high"):
+            return {}
     if config.provider == "anthropic" and max_tokens <= (
         _ANTHROPIC_THINKING_BUDGETS.get(reasoning_effort, 0)
     ):
@@ -1205,7 +1210,7 @@ async def check_llm_health(
         kwargs: dict[str, Any] = {
             "model": model_name,
             "messages": [{"role": "user", "content": prompt}],
-            **_output_token_kwarg(config, 64),
+            **_output_token_kwarg(config, 256),
             "api_key": _effective_api_key(config.provider, config.api_key),
             "api_base": _normalize_api_base(
                 config.provider, config.api_base, config.model
@@ -1215,7 +1220,7 @@ async def check_llm_health(
         api_version = _azure_foundry_api_version(config)
         if api_version:
             kwargs["api_version"] = api_version
-        _apply_reasoning_effort(config, kwargs, config.reasoning_effort, 64)
+        _apply_reasoning_effort(config, kwargs, config.reasoning_effort, 256)
 
         response = await _route_acompletion(config, litellm, **kwargs)
         content = _extract_choice_text(response.choices[0])
@@ -1417,6 +1422,8 @@ def _is_response_format_unsupported(error: Exception) -> bool:
     single provider's exact message.
     """
     msg = str(error).lower()
+    if "json_validate_failed" in msg:
+        return True
     if "response_format" not in msg:
         return False
     rejection_cues = ("must be", "not support", "unsupported", "not allowed", "invalid")
@@ -1451,6 +1458,11 @@ def get_safe_max_tokens(
         Safe token count, clamped correctly and always >= 1.
     """
     safe_requested = max(1, requested)
+    if (config is not None and config.provider == "groq") or model_name.startswith("groq/"):
+        # Groq free tier enforces an 8,000 TPM limit (input tokens + max_tokens).
+        # Capping max_tokens to 2048 prevents exceeding the 8000 TPM limit while
+        # leaving ample room for structured resume and interview JSON.
+        safe_requested = min(safe_requested, 2048)
 
     try:
         info = litellm.get_model_info(model=model_name)
@@ -1885,8 +1897,13 @@ async def complete_json(
     # The ChatGPT plan route has no JSON mode to opt into: never send it, even
     # when the slug is in LiteLLM's registry. The prompt plus extraction and
     # retries below carry JSON for that provider, as for claude_cli.
-    use_json_mode = config.provider != "chatgpt" and (
-        _supports_json_mode(model_name) or _openai_compatible_supports_json_mode(config)
+    use_json_mode = (
+        config.provider != "chatgpt"
+        and not (config.provider == "groq" and "gpt-oss" in config.model)
+        and (
+            _supports_json_mode(model_name)
+            or _openai_compatible_supports_json_mode(config)
+        )
     )
     json_mode_failed = False
 

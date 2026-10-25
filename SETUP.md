@@ -1,8 +1,6 @@
-# Resume Matcher Setup Guide
+# Marauder ML Setup Guide
 
-[**English**](SETUP.md) | [Español](SETUP.es.md) | [简体中文](SETUP.zh-CN.md) | [日本語](SETUP.ja.md)
-
-Welcome! This guide will walk you through setting up Resume Matcher on your local machine. Whether you're a developer looking to contribute or someone who wants to run the application locally, this guide has you covered.
+Welcome! This guide will walk you through setting up Marauder ML on your local machine.
 
 ---
 
@@ -64,8 +62,7 @@ pip install uv
 If you're familiar with development tools and want to get running quickly:
 
 ```bash
-# 1. Clone the repository
-git clone https://github.com/srbhr/Resume-Matcher.git
+# 1. Navigate to the repository
 cd Resume-Matcher
 
 # 2. Start the backend (Terminal 1)
@@ -105,14 +102,9 @@ You can also use the installers from the links in the [Prerequisites](#prerequis
 
 ### 2. Download the code
 
-Either clone with Git:
-
 ```powershell
-git clone https://github.com/srbhr/Resume-Matcher.git
 cd Resume-Matcher
 ```
-
-Or, without Git, open the [repository page](https://github.com/srbhr/Resume-Matcher), click **Code → Download ZIP**, extract the ZIP, and `cd` into the extracted folder in PowerShell.
 
 ### 3. Start the backend (PowerShell window 1)
 
@@ -152,7 +144,6 @@ Open **<http://localhost:3000>** in your browser.
 First, get the code on your machine:
 
 ```bash
-git clone https://github.com/srbhr/Resume-Matcher.git
 cd Resume-Matcher
 ```
 
@@ -815,12 +806,7 @@ Resume-Matcher/
 
 ## Getting Help
 
-Stuck? Here are your options:
+If you run into issues or have questions:
 
-- **Discord Community:** [dsc.gg/resume-matcher](https://dsc.gg/resume-matcher) - Active community for questions and discussions
-- **GitHub Issues:** [Open an issue](https://github.com/srbhr/Resume-Matcher/issues) for bugs or feature requests
-- **Documentation:** Browse the [online docs](https://resumematcher.fyi/docs/) for detailed guides
-
----
-
-Happy resume building! If you find Resume Matcher helpful, consider [starring the repo](https://github.com/srbhr/Resume-Matcher) and [joining our Discord](https://dsc.gg/resume-matcher).
+- Check backend logs at `http://localhost:8000/docs` or terminal output.
+- Submit an issue or feature proposal in your repository.

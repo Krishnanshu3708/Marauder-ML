@@ -1,351 +1,261 @@
 <div align="center">
 
-[![Resume Matcher](assets/header.webp)](https://resumematcher.fyi/)
+![Marauder ML](assets/header.webp)
 
-# Resume Matcher
+# Marauder ML
 
-[𝙹𝚘𝚒𝚗 𝙳𝚒𝚜𝚌𝚘𝚛𝚍](https://dsc.gg/resume-matcher) ✦ [𝚆𝚎𝚋𝚜𝚒𝚝𝚎](https://resumematcher.fyi/) ✦ [𝙷𝚘𝚠 𝚝𝚘 𝙸𝚗𝚜𝚝𝚊𝚕𝚕](https://resumematcher.fyi/docs/installation/) ✦ [𝙲𝚘𝚗𝚝𝚛𝚒𝚋𝚞𝚝𝚘𝚛𝚜](#contributors) ✦ [𝚂𝚙𝚘𝚗𝚜𝚘𝚛](#sponsors) ✦ [𝚃𝚠𝚒𝚝𝚝𝚎𝚛/𝚇](https://twitter.com/srbhr_r) ✦ [𝙻𝚒𝚗𝚔𝚎𝚍𝙸𝚗](https://www.linkedin.com/company/resume-matcher/) ✦ [𝙲𝚛𝚎𝚊𝚝𝚘𝚛](https://srbhr.com)
+### *I Solemnly Swear I Am Qualified*
+**Intelligent Resume Matching, TF-IDF Text Similarity & Skill Gap Analysis Engine**
 
-**English** | [Español](README.es.md) | [简体中文](README.zh-CN.md) | [日本語](README.ja.md)
+[![Machine Learning](https://img.shields.io/badge/ML-Supervised_Classification-blue.svg?style=for-the-badge)](#machine-learning-architecture--evaluation)
+[![Scikit-Learn](https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)](#tech-stack)
+[![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)](#tech-stack)
+[![Next.js 16](https://img.shields.io/badge/Next.js_16-black?style=for-the-badge&logo=next.js&logoColor=white)](#tech-stack)
 
-Free, open-source resume builder that tailors your resume (CV) to each job description. A self-hosted AI harness for Claude, ChatGPT, DeepSeek, Kimi, GLM, Gemma and other LLMs, local or remote.
+A self-hosted resume intelligence platform and Machine Learning harness featuring supervised candidate qualification classification, TF-IDF cosine similarity, automated skill gap discovery, deterministic ATS scoring, and LLM-powered resume tailoring.
 
-![Resume Matcher Demo](assets/Resume_Matcher_Demo_2.gif)
+![Marauder ML Demo](assets/Resume_Matcher_Demo_2.gif)
 
 </div>
 
 <br>
 
-<div align="center">
+## Table of Contents
+- [Overview](#overview)
+- [Machine Learning Architecture & Evaluation](#machine-learning-architecture--evaluation)
+  - [Dataset Specification](#dataset-specification)
+  - [Empirical Evaluation Results](#empirical-evaluation-results)
+  - [Confusion Matrix & Cross-Validation](#confusion-matrix--cross-validation)
+- [Marauder ML Studio](#marauder-ml-studio)
+- [Core Application Features](#core-application-features)
+  - [Resume Builder & Multi-Template PDF Export](#resume-builder--multi-template-pdf-export)
+  - [Deterministic ATS Score & Parsing Check](#deterministic-ats-score--parsing-check)
+- [Quick Start & Installation](#quick-start--installation)
+- [Machine Learning CLI Commands](#machine-learning-cli-commands)
+- [Supported AI Providers](#supported-ai-providers)
+- [Docker Deployment](#docker-deployment)
+- [Tech Stack](#tech-stack)
 
-![Stars](https://img.shields.io/github/stars/srbhr/Resume-Matcher?labelColor=F0F0E8&style=for-the-badge&color=1d4ed8)
-![Apache 2.0](https://img.shields.io/github/license/srbhr/Resume-Matcher?labelColor=F0F0E8&style=for-the-badge&color=1d4ed8) ![Forks](https://img.shields.io/github/forks/srbhr/Resume-Matcher?labelColor=F0F0E8&style=for-the-badge&color=1d4ed8) ![version](https://img.shields.io/badge/Version-1.4%20Short%20Circuit%20-FFF?labelColor=F0F0E8&style=for-the-badge&color=1d4ed8)
+---
 
-[![Discord](https://img.shields.io/discord/1122069176962531400?labelColor=F0F0E8&logo=discord&logoColor=1d4ed8&style=for-the-badge&color=1d4ed8)](https://dsc.gg/resume-matcher) [![Website](https://img.shields.io/badge/website-Resume%20Matcher-FFF?labelColor=F0F0E8&style=for-the-badge&color=1d4ed8)](https://resumematcher.fyi/) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Resume%20Matcher-FFF?labelColor=F0F0E8&logo=LinkedIn&style=for-the-badge&color=1d4ed8)](https://www.linkedin.com/company/resume-matcher/)
+## Overview
 
-<a href="https://trendshift.io/repositories/565" target="_blank"><img src="https://trendshift.io/api/badge/repositories/565" alt="srbhr%2FResume-Matcher | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+**Marauder ML** is an end-to-end Machine Learning and resume intelligence system designed to evaluate candidate-job alignment, discover critical skill gaps, and tailor resumes to specific job descriptions. 
+
+Combining local supervised classification models (Scikit-Learn) with an interactive Next.js web application, Marauder ML runs 100% locally and privately on your own machine.
 
-![Vercel OSS Program](https://vercel.com/oss/program-badge.svg)
+> **Detailed Academic Report**: See [**`ML_DOCUMENTATION.md`**](ML_DOCUMENTATION.md) for full dataset schemas, domain breakdowns, and pipeline implementation details.
 
-</div>
+---
 
-> \[!IMPORTANT]
->
-> The project needs your help and support. If you can donate a small amount, that will help me to continue developing and improving Resume Matcher.
+## Machine Learning Architecture & Evaluation
 
-<div align="center">
+The core Machine Learning subsystem performs binary qualification classification and semantic similarity scoring between candidate resumes and job descriptions.
 
-[![Sponsor on GitHub](https://img.shields.io/github/sponsors/srbhr?style=for-the-badge&label=Sponsor&color=1d4ed8&labelColor=F0F0E8&logo=github&logoColor=black)](https://github.com/sponsors/srbhr) [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&color=1d4ed8&labelColor=F0F0E8&logoColor=black)](https://www.buymeacoffee.com/srbhr)
+### Dataset Specification
 
-**Sponsoring for a company?** Put your logo in front of 27k+ developers → **[become a sponsor ↓](#sponsors)**
+The curated dataset (`apps/backend/data/ml_dataset/expanded_dataset.csv`) contains **360 balanced resume–job description pairs** across 8 distinct technical domains (45 pairs each):
+1. **Artificial Intelligence & Machine Learning**
+2. **Data Science & Data Analytics**
+3. **Frontend & Backend Web Development**
+4. **Python & Core Software Development**
+5. **Cybersecurity & Information Security**
+6. **Cloud Computing & DevOps / SRE**
+7. **Database Engineering & Business Intelligence**
+8. **General IT & Technical Support**
 
-</div>
+- **Train/Test Split**: Stratified 80% Training (288 rows) / 20% Held-Out Testing (72 rows).
+- **Leakage Prevention**: TF-IDF vocabulary is fitted strictly on the training set and independently transformed inside each cross-validation fold via `sklearn.pipeline.Pipeline`.
 
-## Getting Started
+### Empirical Evaluation Results
 
-Resume Matcher works by creating a master resume that you can use to tailor for each job application. Installation instructions here: [How to Install](#how-to-install)
+The supervised Logistic Regression model was trained on `train.csv` (288 rows) and tested on the held-out `test.csv` (72 rows), compared against a naive majority-class `DummyClassifier` baseline:
 
-### How It Works
+| Metric | Supervised Logistic Regression | Dummy Baseline (Most Frequent) | Empirical Lift |
+| :--- | :---: | :---: | :---: |
+| **Accuracy** | **0.7917 (79.2%)** | 0.5139 (51.4%) | **+0.2778 (+27.8%)** |
+| **Precision (Class 1)** | **0.7895 (79.0%)** | 0.5139 (51.4%) | **+0.2756** |
+| **Recall (Class 1)** | **0.8108 (81.1%)** | 1.0000 (100.0%) | -0.1892 (Baseline trivially predicts all 1s) |
+| **F1-Score (Class 1)** | **0.8000 (80.0%)** | 0.6789 (67.9%) | **+0.1211 (+12.1%)** |
+| **Macro F1-Score** | **0.7913 (79.1%)** | 0.3394 (33.9%) | **+0.4519 (+45.2%)** |
+| **ROC-AUC** | **0.8479 (84.8%)** | 0.5000 (Random) | **+0.3479** |
 
-1. **Upload** your master resume (PDF or DOCX)
-2. **Paste** a job description you're targeting
-3. **Review** AI-generated improvements and tailored content
-4. **Cover Letter** and optional interview preparation for the job application
-5. **Customize** the layout and sections to fit your style
-6. **Export** as a professional PDF with your preferred template
+### Confusion Matrix & Cross-Validation
 
-### Built for Software Engineers
+#### Confusion Matrix on Held-Out Test Set (72 rows)
+```
+                    Predicted Mismatch (0)    Predicted Match (1)
+Actual Mismatch (0)        TN = 27                  FP = 8
+Actual Match (1)           FN = 7                   TP = 30
+```
+- **True Negatives (TN = 27)**: Unqualified candidates correctly classified.
+- **True Positives (TP = 30)**: Qualified candidates correctly identified.
+- **False Positives (FP = 8)**: Unqualified candidates misclassified as matches.
+- **False Negatives (FN = 7)**: Qualified candidates misclassified as mismatches.
 
-Installing Resume Matcher takes a terminal, so most of the people running it write software. It fits the way you already work:
+#### 5-Fold Stratified Cross-Validation on Training Set (288 rows)
+- **CV Accuracy**: `0.7258 (+/- 0.0363)`
+- **CV Precision**: `0.7174 (+/- 0.0478)`
+- **CV Recall**: `0.7756 (+/- 0.0761)`
+- **CV F1-Score**: `0.7420 (+/- 0.0348)`
+- **CV ROC-AUC**: `0.8380 (+/- 0.0295)`
 
-- **It runs on your machine.** A FastAPI backend, a Next.js frontend and a SQLite file. Clone the repo or start one Docker container. You don't create an account, and your resume stays in your own database.
-- **You choose the model.** Bring an API key for OpenAI, Anthropic, Gemini, DeepSeek, OpenRouter or Groq, or run a local model with Ollama so your resume never leaves the machine.
-- **Claude Code can drive it.** The [MCP server](SETUP.md#use-resume-matcher-from-claude-code-or-claude-desktop-mcp) lets Claude Code, Cursor or Codex write the tailored resume while Resume Matcher stores, checks and renders it, with no LLM key.
-- **It sticks to your real experience.** The tailoring prompts forbid adding skills, tools, employers or metrics that aren't in your master resume.
-- **The scores are plain code.** The ATS score ([`services/ats.py`](apps/backend/app/services/ats.py)) and the ATS check ([`services/ats_parse/`](apps/backend/app/services/ats_parse/)) make no LLM call. The ATS check runs your PDF through pdfminer to show what an applicant tracking system would extract.
-- **The templates look like engineering resumes.** Deedy, Modern Deedy and a LaTeX-style layout sit next to single- and two-column options. Seven of the designs also come as editable pdfLaTeX projects for Overleaf in [resume-matcher-templates](https://github.com/resume-matcher/resume-matcher-templates).
+---
 
-### Stay Connected
+## Marauder ML Studio
 
-[![Discord](assets/resume_matcher_discord.webp)](https://dsc.gg/resume-matcher)
+The **Marauder ML Studio** interface (`/careerfit-ml`) provides an interactive environment for real-time inference and analysis:
 
-Join our [Discord](https://dsc.gg/resume-matcher) for discussions, feature requests, and community support.
+- **Similarity Scoring**: Computes TF-IDF Cosine Similarity score reflecting vocabulary and contextual overlap.
+- **Role Qualification Inference**: Predicts binary qualification (`Qualified Match` vs. `Skill Mismatch`) with model confidence probability.
+- **Skill Gap Discovery Engine**: Automatically compares candidate skills against target requirements:
+  - **Matched Skills**: Technical keywords present in both resume and job description.
+  - **Missing Target Competencies**: High-priority keywords from the job description missing from candidate experience.
+  - **Candidate Unique Strengths**: Differentiating technologies present on the resume beyond standard job requirements.
 
-[![LinkedIn](assets/resume_matcher_linkedin.webp)](https://www.linkedin.com/company/resume-matcher/)
+---
 
-Follow us on [LinkedIn](https://www.linkedin.com/company/resume-matcher/) for updates.
+## Core Application Features
 
-![Star Resume Matcher](assets/star_resume_matcher.webp)
+### Master Resume & Tailoring Dashboard
 
-Star the repo to support development and get notified of new releases.
+Maintain a comprehensive master resume containing your full experience, projects, and skills.
 
-## Sponsors
+![Dashboard with a master resume and tailored resumes](assets/step_2.webp)
 
-![sponsors](assets/sponsors.webp)
+### Resume Builder & Multi-Template PDF Export
 
-Resume Matcher is free and open-source, kept alive by its sponsors and backers. If it helps you, please consider supporting its development.
+Tailor resumes for individual job applications with real-time preview and export:
 
-### Companies backing Resume Matcher
+![Resume Builder with template picker and live preview](assets/step_5.webp)
 
-Sponsor at a company tier and **your logo + link + blurb lands here** — in front of a community of **27k+ stars and 4.9k forks**, featured on [Trendshift](https://trendshift.io/repositories/565) and the [Vercel OSS Program](https://vercel.com/oss).
+| Template Name           | Preview                                                           | Description                                                                                                                      |
+| ----------------------- | ----------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| **Single Column**       | ![Single Column](assets/pdf-templates/single-column.webp)         | Traditional full-width layout with maximum content density. [𝐕𝐢𝐞𝐰 𝐏𝐃𝐅](assets/pdf-templates/single-column.pdf)                   |
+| **Two Column**          | ![Two Column](assets/pdf-templates/two-column.webp)               | Experience-focused main column with sidebar for skills. [𝐕𝐢𝐞𝐰 𝐏𝐃𝐅](assets/pdf-templates/two-column.pdf)                          |
+| **Modern**              | ![Modern](assets/pdf-templates/modern-single-column.webp)         | Colorful accents with customizable theme colors. [𝐕𝐢𝐞𝐰 𝐏𝐃𝐅](assets/pdf-templates/modern-single-column.pdf)                       |
+| **Modern Two Column**   | ![Modern Two Column](assets/pdf-templates/modern-two-column.webp) | Two-column layout with modern colorful accents and themes. [𝐕𝐢𝐞𝐰 𝐏𝐃𝐅](assets/pdf-templates/modern-two-column.pdf)                |
+| **LaTeX**               | ![LaTeX](assets/pdf-templates/latex.webp)                         | Classic serif academic layout with ruled section headers. [𝐕𝐢𝐞𝐰 𝐏𝐃𝐅](assets/pdf-templates/latex.pdf)                             |
+| **Clean**               | ![Clean](assets/pdf-templates/clean.webp)                         | Minimal sans layout with large understated section headers. [𝐕𝐢𝐞𝐰 𝐏𝐃𝐅](assets/pdf-templates/clean.pdf)                           |
+| **Vivid**               | ![Vivid](assets/pdf-templates/vivid.webp)                         | Colorful two-column layout with accent headers and arrow bullets. [𝐕𝐢𝐞𝐰 𝐏𝐃𝐅](assets/pdf-templates/vivid.pdf)                     |
+| **Vivid Single Column** | ![Vivid Single Column](assets/pdf-templates/vivid-single.webp)    | Colorful single-column layout with accent headers and arrow bullets. [𝐕𝐢𝐞𝐰 𝐏𝐃𝐅](assets/pdf-templates/vivid-single.pdf)           |
+| **Modern Deedy**        | ![Modern Deedy](assets/pdf-templates/modern-deedy.webp)           | Dense one-page layout in Lato with light grey uppercase section headings. [𝐕𝐢𝐞𝐰 𝐏𝐃𝐅](assets/pdf-templates/modern-deedy.pdf)      |
+| **Deedy**               | ![Deedy](assets/pdf-templates/deedy.webp)                         | Two-column layout with a hairline name, a narrow left column and light gray headings. [𝐕𝐢𝐞𝐰 𝐏𝐃𝐅](assets/pdf-templates/deedy.pdf) |
 
-| Sponsor | Description |
-|---------|-------------|
-| [Apideck](https://apideck.com?utm_source=resumematcher&utm_medium=github&utm_campaign=sponsors) | One API to connect your app to 200+ SaaS platforms (accounting, HRIS, CRM, file storage). Build integrations once, not 50 times. 🌐 [apideck.com](https://apideck.com?utm_source=resumematcher&utm_medium=github&utm_campaign=sponsors) |
-| [Vercel](https://vercel.com?utm_source=resumematcher&utm_medium=github&utm_campaign=sponsors) | Resume Matcher is a part of Vercel OSS // Summer 2025 Program 🌐 [vercel.com](https://vercel.com?utm_source=resumematcher&utm_medium=github&utm_campaign=sponsors) |
-| [Cubic.dev](https://cubic.dev?utm_source=resumematcher&utm_medium=github&utm_campaign=sponsors) | Cubic provides PR reviews for Resume Matcher 🌐 [cubic.dev](https://cubic.dev?utm_source=resumematcher&utm_medium=github&utm_campaign=sponsors) |
-| [Kilo Code](https://kilo.ai?utm_source=resumematcher&utm_medium=github&utm_campaign=sponsors) | Kilo Code provides AI code reviews and coding credits to Resume Matcher 🌐 [kilo.ai](https://kilo.ai?utm_source=resumematcher&utm_medium=github&utm_campaign=sponsors) |
-| [ZanReal](https://zanreal.com/?utm_source=resumematcher&utm_medium=github&utm_campaign=sponsors) | ZanReal is an AI-driven development company building scalable cloud solutions, from strategy and UX to DevOps, helping teams ship faster and turn ideas into production. 🌐 [zanreal.com](https://zanreal.com/?utm_source=resumematcher&utm_medium=github&utm_campaign=sponsors) |
-| **✦ Your company here** | Reach 27k+ developers and 4.9k forks. **[Become a sponsor →](https://github.com/sponsors/srbhr)** |
+### Deterministic ATS Score & Parsing Check
 
-Read the [Sponsorship Guide](https://resumematcher.fyi/docs/sponsoring/) for tiers and details. Sponsors get a special thank-you in the README and on our website.
+- **ATS Score (0–100)**: Evaluates keyword match (40%), skills coverage (20%), job-title match (15%), section completeness (15%), and date consistency (10%).
+- **ATS Check**: Runs PDF through pdfminer to verify machine parseability, reading order, and heading structure without making external API calls.
 
-<a id="support-the-development-by-donating"></a>
+![JD Match tab with ATS score breakdown and keyword highlighting](assets/keyword_highlighter.webp)
 
-### Support as an individual
+---
 
-![donate](assets/supporting_resume_matcher.webp)
+## Quick Start & Installation
 
-Every bit keeps Resume Matcher free and funds new features — and you'll be thanked in the README and on our website.
-
-| Platform  | Link                                   |
-|-----------|----------------------------------------|
-| GitHub    | [![GitHub Sponsors](https://img.shields.io/github/sponsors/srbhr?style=for-the-badge&color=1d4ed8&labelColor=F0F0E8&logo=github&logoColor=black)](https://github.com/sponsors/srbhr) |
-| Buy Me a Coffee | [![BuyMeACoffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&color=1d4ed8&labelColor=F0F0E8&logoColor=black)](https://www.buymeacoffee.com/srbhr) |
-
-## Creators' Note
-
-[![srbhr](assets/creators_note.webp)](https://srbhr.com)
-
-Thank you for checking out Resume Matcher. If you want to connect, collaborate, or just say hi, feel free to reach out!
-~ **Saurabh Rai** ✨
-
-You can follow me on:
-
-- Website: [https://srbhr.com](https://srbhr.com)
-- Linkedin: [https://www.linkedin.com/in/srbhr/](https://www.linkedin.com/in/srbhr/)
-- Twitter: [https://twitter.com/srbhr_r](https://twitter.com/srbhr_r)
-- GitHub: [https://github.com/srbhr](https://github.com/srbhr)
-
-## Key Features
-
-![resume_matcher_features](assets/features.webp)
-
-### Core Features
-
-**Master Resume**: Create a comprehensive master resume to draw from your existing one.
-
-![Dashboard with a master resume and seven tailored resumes](assets/step_2.webp)
-
-### Resume Builder
-
-![Resume Builder with the template picker and a live preview of a software engineer resume](assets/step_5.webp)
-
-Paste in a job description and get AI-powered resume tailored for that specific role.
-
-You can:
-
-- Modify suggested content
-- Add/remove sections
-- Rearrange sections via drag-and-drop
-- Choose from multiple resume templates
-
-### Cover Letter Generator
-
-Generate tailored cover letters based on the job description and your resume.
-
-The default writing approach uses a specific opening hook, two or three relevant experience examples, a company-fit paragraph grounded in the supplied job description, and a confident call to action. Letters aim for 200–300 words and adapt tone and regional conventions when the inputs provide enough context. Names, metrics, company research, and personal motivations must be supported by the supplied information. Existing custom cover-letter prompts in Settings continue to override the default.
-
-This approach is adapted from the [jezweb resume-cover-letter skill](https://github.com/jezweb/claude-skills/blob/main/plugins/writing/skills/resume-cover-letter/SKILL.md). Resume Matcher's existing editor, preview, and PDF export remain available.
-
-![Cover letter editor next to its PDF preview](assets/cover_letter.webp)
-
-### Interview Preparation
-
-Generate structured, resume-grounded interview prep for saved tailored resumes. Use the Builder's Interview Prep tab on demand, or enable automatic generation in Settings.
-
-### Tailoring Queue
-
-Paste several job descriptions on the Tailoring Queue page and they are tailored from your master resume one after another in the background. Role, company and job ID are detected from the text without an AI call, and you can edit them. An optional cooldown between jobs (0 to 60 seconds) lowers the risk of hitting your provider's rate limits. Queued jobs are kept in the database and resume after a restart.
-
-### ATS Score, ATS Check & Keyword Highlighting
-
-The JD Match tab shows the job description beside your resume with the shared keywords highlighted, plus an **ATS score** out of 100: keyword match (40%), skills coverage (20%), job-title match (15%), section completeness (15%) and date consistency (10%). It lists the missing keywords, and the ones your master resume already has, so you can add those without inventing anything.
-
-The **ATS Check** tab renders your PDF and reads the text back the way an applicant tracking system's text extractor does, then reports parseability, reading order, contact details and section headings. Both run as plain code. [What is an ATS score?](https://resumematcher.fyi/blog/what-is-an-ats-score/) explains the formulas.
-
-![JD Match tab with the ATS score breakdown and matching keywords highlighted](assets/keyword_highlighter.webp)
-
-### PDF Export
-
-Export your tailored resume and cover letter in PDF.
-
-### Templates
-
-The templates export text-based PDFs in A4 or US Letter that applicant tracking systems can parse.
-
-| Template Name | Preview | Description |
-|---------------|---------|-------------|
-| **Single Column** | ![Single Column](assets/pdf-templates/single-column.webp) | Traditional full-width layout with maximum content density. [𝐕𝐢𝐞𝐰 𝐏𝐃𝐅](assets/pdf-templates/single-column.pdf) |
-| **Two Column** | ![Two Column](assets/pdf-templates/two-column.webp) | Experience-focused main column with sidebar for skills. [𝐕𝐢𝐞𝐰 𝐏𝐃𝐅](assets/pdf-templates/two-column.pdf) |
-| **Modern** | ![Modern](assets/pdf-templates/modern-single-column.webp) | Colorful accents with customizable theme colors. [𝐕𝐢𝐞𝐰 𝐏𝐃𝐅](assets/pdf-templates/modern-single-column.pdf) |
-| **Modern Two Column** | ![Modern Two Column](assets/pdf-templates/modern-two-column.webp) | Two-column layout with modern colorful accents and themes. [𝐕𝐢𝐞𝐰 𝐏𝐃𝐅](assets/pdf-templates/modern-two-column.pdf) |
-| **LaTeX** | ![LaTeX](assets/pdf-templates/latex.webp) | Classic serif academic layout with ruled section headers. [𝐕𝐢𝐞𝐰 𝐏𝐃𝐅](assets/pdf-templates/latex.pdf) |
-| **Clean** | ![Clean](assets/pdf-templates/clean.webp) | Minimal sans layout with large understated section headers. [𝐕𝐢𝐞𝐰 𝐏𝐃𝐅](assets/pdf-templates/clean.pdf) |
-| **Vivid** | ![Vivid](assets/pdf-templates/vivid.webp) | Colorful two-column layout with accent headers and arrow bullets. [𝐕𝐢𝐞𝐰 𝐏𝐃𝐅](assets/pdf-templates/vivid.pdf) |
-| **Vivid Single Column** | ![Vivid Single Column](assets/pdf-templates/vivid-single.webp) | Colorful single-column layout with accent headers and arrow bullets. [𝐕𝐢𝐞𝐰 𝐏𝐃𝐅](assets/pdf-templates/vivid-single.pdf) |
-| **Modern Deedy** | ![Modern Deedy](assets/pdf-templates/modern-deedy.webp) | Dense one-page layout in Lato with light grey uppercase section headings. [𝐕𝐢𝐞𝐰 𝐏𝐃𝐅](assets/pdf-templates/modern-deedy.pdf) |
-| **Deedy** | ![Deedy](assets/pdf-templates/deedy.webp) | Two-column layout with a hairline name, a narrow left column and light gray headings. [𝐕𝐢𝐞𝐰 𝐏𝐃𝐅](assets/pdf-templates/deedy.pdf) |
-
-### Internationalization
-
-- **Multi-Language UI**: Interface available in English, Spanish, Chinese, Japanese, Brazilian Portuguese, French and Korean
-- **Multi-Language Content**: Generate resumes and cover letters in your preferred language
-
-### Roadmap
-
-If you have any suggestions or feature requests, please feel free to open an issue on GitHub or discuss it on our [Discord](https://dsc.gg/resume-matcher) server.
-
-- AI Canvas for crafting impactful, metric-driven resume content
-- Email template generator for job applications
-- Multi-job description optimization
-
-## Resume Guides for Software Engineers
-
-The [Resume Matcher blog](https://resumematcher.fyi/blog/) has writing guides for developers, from a first internship resume to a FAANG application:
-
-- [Software engineer resume](https://resumematcher.fyi/blog/software-engineer-resume/): a one-page template, two annotated examples and advice for each section
-- [Computer science resume](https://resumematcher.fyi/blog/computer-science-resume/): for students and new grads, built from projects and internships
-- [FAANG resume](https://resumematcher.fyi/blog/faang-resume/): what Google, Meta and Amazon say they screen for, from their own careers pages
-- [LaTeX resume](https://resumematcher.fyi/blog/latex-resume/): Jake's, sb2nov and Awesome-CV, Overleaf, and how a parser reads the PDF
-- [Open source resume builders](https://resumematcher.fyi/blog/open-source-resume-builders/): Reactive Resume, RenderCV, YAMLResume, Awesome-CV and others compared
-- [Master resume](https://resumematcher.fyi/blog/master-resume/): the one complete resume you tailor each application from
-- [Tailor your resume to a job description](https://resumematcher.fyi/blog/how-to-match-your-resume-to-a-job-description/): the method, step by step
-- [Private AI resume tailoring with Ollama](https://resumematcher.fyi/blog/local-ai-resume-tailoring-ollama/): keep your resume on your own machine
-- [What is an ATS score?](https://resumematcher.fyi/blog/what-is-an-ats-score/): how resume checkers calculate a score, with Resume Matcher's formulas
-- [ChatGPT prompts for resume tailoring](https://resumematcher.fyi/blog/tailor-resume-with-chatgpt-claude/): prompts for ChatGPT and Claude that don't invent experience
-
-<a id="how-to-install"></a>
-
-## How to Install
-
-![Installation](assets/how_to_install_resumematcher.webp)
-
-For detailed setup instructions, see **[SETUP.md](SETUP.md)** (English) or: [Español](SETUP.es.md), [简体中文](SETUP.zh-CN.md), [日本語](SETUP.ja.md).
+For full configuration guidelines, refer to **[SETUP.md](SETUP.md)**.
 
 ### Prerequisites
 
-| Tool | Version | Installation |
-|------|---------|--------------|
-| Python | 3.13+ | [python.org](https://python.org) |
-| Node.js | 24.22.1 (pinned in `.nvmrc`) | [nodejs.org](https://nodejs.org) |
-| uv | Latest | [astral.sh/uv](https://docs.astral.sh/uv/getting-started/installation/) |
+| Tool    | Minimum Version              | Purpose                                   |
+| ------- | ---------------------------- | ----------------------------------------- |
+| Python  | 3.13+                        | FastAPI backend, ML pipeline & ATS parser |
+| Node.js | 24.22.1 (pinned in `.nvmrc`) | Next.js 16 frontend                       |
+| uv      | Latest                       | Python package & environment manager      |
 
-### Quick Start
-
-Fastest for MacOS, WSL and Ubuntu users:
+### Setup Commands
 
 ```bash
-# Clone the repository
-git clone https://github.com/srbhr/Resume-Matcher.git
-cd Resume-Matcher
-
-# Backend (Terminal 1)
+# 1. Backend Service (Terminal 1)
 cd apps/backend
-cp .env.example .env        # Configure your AI provider
+cp .env.example .env        # Configure local settings
 uv sync                      # Install dependencies
 uv run app
 
-# Frontend (Terminal 2)
+# 2. Frontend Application (Terminal 2)
 cd apps/frontend
 npm install
 npm run dev
 ```
 
-Open **<http://localhost:3000>** and configure your AI provider in Settings.
+### Access Endpoints
 
-**Windows 11:** see [Windows 11 Setup](SETUP.md#windows-11-setup) for PowerShell commands.
+- **Marauder ML Studio**: <http://localhost:3000/careerfit-ml>
+- **Resume Dashboard**: <http://localhost:3000/dashboard>
+- **API Documentation**: <http://localhost:8000/docs>
+- **API Health Check**: <http://localhost:8000/api/v1/health>
 
-### Supported AI Providers
+---
 
-| Provider | Local/Cloud | Notes |
-|----------|-------------|-------|
-| **Your coding agent** | Local | No API key. Open Claude Code, Codex, Cursor or Copilot in this folder and ask it to set up Resume Matcher and tailor your resume: the agent does the AI work in its own app, and Resume Matcher stores, checks and renders the result for you to edit. Choose **Coding agent** in Settings. See [SETUP.md](SETUP.md#use-resume-matcher-with-a-coding-agent). |
-| **Ollama** | Local | Free, runs on your machine |
-| **Claude subscription (via Claude Code)** | Cloud (via local CLI) | Runs your installed `claude` CLI, so this app needs no API key and never sees or stores your Claude credentials, but prompts still go to Anthropic through your Claude Code login and count toward your plan's usage limits (Anthropic may draw them from usage credits instead). Anthropic doesn't allow third-party apps to route requests through Claude Free/Pro/Max plans, this option may count as one, and Anthropic can enforce that without notice; Settings asks you to accept that risk first. For guaranteed access, use the **Anthropic** provider with an API key, or let Claude Code do the work as [your coding agent](SETUP.md#use-resume-matcher-with-a-coding-agent). Set `LLM_PROVIDER=claude_cli`; pick the model in Settings or with `LLM_MODEL` (`fable`, `opus`, `sonnet`, `haiku` or a full `claude-…` name). Requires [Claude Code](https://claude.com/claude-code) installed and signed in (`claude auth login`); not available inside the Docker images. |
-| **ChatGPT plan (Sign in with ChatGPT)** | Cloud | Community-built. Uses OpenAI's official [Sign in with ChatGPT for open-source apps](https://developers.openai.com/siwc/token-sharing-open-source) (preview, may change) with ChatGPT Plus or Pro: choose **ChatGPT plan** in Settings and click **Continue with ChatGPT**; no API key needed. Requests go from your machine to OpenAI's Responses API and count toward your plan's limits (on Plus the five-hour limit is shared with your other apps; Pro has none). Sign in from a browser on the machine running the backend; the default Docker setup can't complete the sign-in (see [SETUP.md](SETUP.md#option-c-your-chatgpt-plan-sign-in-with-chatgpt)). For guaranteed access, use the **OpenAI** provider with an API key. Set `LLM_PROVIDER=chatgpt`. |
-| **OpenAI** | Cloud | GPT-5 Nano, GPT-4o |
-| **Anthropic** | Cloud | Claude Haiku 4.5 |
-| **Google Gemini** | Cloud | Gemini 3 Flash |
-| **OpenRouter** | Cloud | Access to multiple models |
-| **DeepSeek** | Cloud | DeepSeek Chat |
-| **Groq** | Cloud | Llama 3.3 70B, GPT-OSS |
+## Machine Learning CLI Commands
 
-### Docker Deployment
+The ML pipeline can be trained, tested, and evaluated directly from the command line:
 
-Official Docker images are published for `linux/amd64` and `linux/arm64` on:
+```powershell
+# Validate dataset integrity and class balance
+uv run --directory apps/backend python -m app.ml.data_loader --validate data/ml_dataset/expanded_dataset.csv
 
-- `ghcr.io/srbhr/resume-matcher`
-- `srbhr/resume-matcher`
+# Train supervised Logistic Regression model with 5-fold cross-validation
+uv run --directory apps/backend python -m app.ml.train --data-path data/ml_dataset/train.csv --output-model data/ml_models/careerfit_logistic_regression.joblib --cv-folds 5
 
-Run on a single public port (`3000`) with API available at `/api`:
+# Evaluate trained model on held-out test split against Dummy baseline
+uv run --directory apps/backend python -m app.ml.evaluate --model-path data/ml_models/careerfit_logistic_regression.joblib --test-data data/ml_dataset/test.csv --train-data data/ml_dataset/train.csv --output-dir data/ml_evaluation
 
-```bash
-docker run --name resume-matcher \
-  -p 3000:3000 \
-  -v resume-data:/app/backend/data \
-  ghcr.io/srbhr/resume-matcher:latest
+# Run ML unit and integration test suite
+uv run --directory apps/backend pytest tests/unit/test_ml_*.py tests/integration/test_careerfit_ml_api.py
 ```
 
-Prefer pinning a version in production, for example `ghcr.io/srbhr/resume-matcher:1.4.0` or
-`ghcr.io/srbhr/resume-matcher:1.4`.
+---
 
-Endpoints:
+## Supported AI Providers
 
-- App: <http://localhost:3000>
-- API health check: <http://localhost:3000/api/v1/health>
-- API docs: <http://localhost:3000/docs>
+Marauder ML supports both local (free, offline) and cloud AI backends for resume tailoring:
 
-> **Using Ollama with Docker?** Use `http://host.docker.internal:11434` as the Ollama URL instead of `localhost` (on Linux, Ollama must also listen beyond `127.0.0.1`; see [SETUP.md](SETUP.md#using-ollama-with-docker)). Docker publishes the app on `127.0.0.1` only; to open it from another device, see [SETUP.md](SETUP.md#opening-it-from-another-device).
+| Provider                                  | Mode                  | Details                                                                                                     |
+| ----------------------------------------- | --------------------- | ----------------------------------------------------------------------------------------------------------- |
+| **Ollama**                                | Local                 | Free, runs fully on your machine with zero external network transmission.                                   |
+| **Your coding agent**                     | Local                 | Works with Claude Code, Cursor, or Copilot via MCP with no API key needed.                                  |
+| **Claude subscription (via Claude Code)** | Cloud (via local CLI) | Uses installed `claude` CLI authentication without storing credentials in the app.                          |
+| **ChatGPT plan (Sign in with ChatGPT)**   | Cloud                 | Uses OpenAI token-sharing with ChatGPT Plus/Pro; no manual API key required.                                |
+| **OpenAI**                                | Cloud                 | GPT-4o, GPT-5 Nano with an API key.                                                                         |
+| **Anthropic**                             | Cloud                 | Claude 3.5 Sonnet, Claude Haiku 4.5 with an API key.                                                        |
+| **Google Gemini**                         | Cloud                 | Gemini 2.0 / 3.0 Flash with an API key.                                                                     |
+| **DeepSeek**                              | Cloud                 | DeepSeek Chat / Reasoner with an API key.                                                                   |
+| **Groq**                                  | Cloud                 | High-speed inference for Llama 3.3 70B with an API key.                                                      |
+| **OpenRouter**                            | Cloud                 | Unified access to multiple open and proprietary LLM architectures.                                          |
 
-### Tech Stack
+---
 
-| Component | Technology |
-|-----------|------------|
-| Backend | FastAPI, Python 3.13+, LiteLLM |
-| Frontend | Next.js 16, React 19, TypeScript |
-| Database | SQLite by default, optional PostgreSQL (SQLAlchemy 2.0) |
-| Styling | Tailwind CSS 4, Swiss International Style |
-| PDF | Headless Chromium via Playwright |
+## Docker Deployment
 
-## Join Us and Contribute
+Build and run with Docker on a single port (`3000`):
 
-![how to contribute](assets/how_to_contribute.webp)
+```bash
+# Build Docker image
+docker build -t marauder-ml .
 
-We welcome contributions from everyone! Whether you're a developer, designer, or just someone who wants to help out. All the contributors are listed in the [about page](https://resumematcher.fyi/about/) on our website and on the GitHub Readme here.
+# Run container
+docker run --name marauder-ml \
+  -p 3000:3000 \
+  -v marauder-data:/app/backend/data \
+  marauder-ml:latest
+```
 
-Check out the roadmap if you would like to work on the features that are planned for the future. If you have any suggestions or feature requests, please feel free to open an issue on GitHub and discuss it on our [Discord](https://dsc.gg/resume-matcher) server.
+---
 
-<a id="contributors"></a>
+## Tech Stack
 
-## Contributors
+| Component         | Technologies                                                                                |
+| ----------------- | ------------------------------------------------------------------------------------------- |
+| **Machine Learning Engine** | Scikit-Learn, NumPy, TF-IDF Vectorizer, Logistic Regression, 5-Fold Stratified Cross-Validation |
+| **Backend API**   | FastAPI, Python 3.13+, Pydantic v2, LiteLLM, SQLAlchemy 2.0                                 |
+| **Frontend UI**   | Next.js 16 (App Router), React 19, TypeScript, Phosphor Icons                               |
+| **Styling**       | Tailwind CSS 4, Swiss Design System, Custom Marauder ML Theme                               |
+| **Database**      | SQLite (default local file storage), optional PostgreSQL                                    |
+| **PDF Rendering** | Headless Chromium via Playwright, pdfminer text extraction                                  |
 
-![Contributors](assets/contributors.webp)
+---
 
-<a href="https://github.com/srbhr/Resume-Matcher/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=srbhr/Resume-Matcher" />
-</a>
+## Contributing
 
-<br/>
-
-<details>
-  <summary><kbd>Star History</kbd></summary>
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://star-history.dera.page/svg?repos=srbhr/resume-matcher&theme=dark&type=Date">
-    <img width="100%" src="https://star-history.dera.page/svg?repos=srbhr/resume-matcher&theme=dark&type=Date">
-  </picture>
-</details>
-
-## Resume Matcher is a part of [Vercel Open Source Program](https://vercel.com/oss)
-
-![Vercel OSS Program](https://vercel.com/oss/program-badge.svg)
+Contributions, enhancements, and feature suggestions are welcome! Feel free to open an issue or submit a pull request.

@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import './careerfit-theme.css';
 
 @source "../../../{app,components,hooks,lib,messages}/**/*.{js,ts,jsx,tsx,mdx}";
 

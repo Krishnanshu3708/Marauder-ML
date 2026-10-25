@@ -1,0 +1,307 @@
+/* CareerFit visual layer. Kept page-scoped so the resume editor and print views
+   retain their existing design system. */
+:root {
+  --cf-night: #080b18;
+  --cf-panel: #10162a;
+  --cf-panel-raised: #151d35;
+  --cf-line: rgb(148 163 255 / 18%);
+  --cf-muted: #a8b3d1;
+  --cf-text: #f3f5ff;
+  --cf-violet: #9b8cff;
+  --cf-blue: #62a8ff;
+  --cf-cyan: #7ce7ff;
+}
+
+.cf-careerfit-theme,
+.cf-dashboard-theme {
+  color: var(--cf-text);
+  background:
+    radial-gradient(ellipse at 12% 0%, rgb(91 63 205 / 18%), transparent 35rem),
+    radial-gradient(ellipse at 90% 18%, rgb(28 115 230 / 15%), transparent 34rem),
+    var(--cf-night);
+}
+
+.cf-careerfit-theme {
+  min-height: 100vh;
+  padding: 1px;
+  overflow: hidden;
+}
+
+.cf-careerfit-theme > div:first-child,
+.cf-careerfit-theme .cf-careerfit-frame {
+  background: transparent !important;
+}
+
+.cf-careerfit-theme .cf-careerfit-frame {
+  position: relative;
+  border: 1px solid var(--cf-line) !important;
+  border-radius: 24px;
+  box-shadow: 0 24px 90px rgb(0 0 0 / 30%), 0 0 70px rgb(96 75 220 / 8%);
+  overflow: hidden;
+  animation: cf-rise-in 620ms cubic-bezier(.2,.8,.2,1) both;
+}
+
+.cf-careerfit-theme h1,
+.cf-careerfit-theme h2,
+.cf-careerfit-theme h3,
+.cf-careerfit-theme [class*="text-ink"] {
+  color: var(--cf-text) !important;
+}
+
+.cf-careerfit-theme [class*="text-steel"],
+.cf-careerfit-theme [class*="text-ink-soft"] {
+  color: var(--cf-muted) !important;
+}
+
+.cf-careerfit-theme [class*="bg-white"],
+.cf-careerfit-theme [class*="bg-canvas"],
+.cf-careerfit-theme [class*="bg-slate-50"] {
+  background: rgb(16 22 42 / 88%) !important;
+}
+
+.cf-careerfit-theme [class*="border-ink"],
+.cf-careerfit-theme [class*="border-slate"],
+.cf-careerfit-theme [class*="border-emerald"],
+.cf-careerfit-theme [class*="border-rose"] {
+  border-color: var(--cf-line) !important;
+}
+
+.cf-careerfit-theme .cf-careerfit-frame > * {
+  position: relative;
+  z-index: 1;
+}
+
+.cf-careerfit-theme .cf-careerfit-frame::before,
+.cf-dashboard-theme > div::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--cf-violet), var(--cf-blue), transparent);
+  opacity: .9;
+  pointer-events: none;
+}
+
+.cf-careerfit-theme textarea {
+  min-height: 220px;
+  color: var(--cf-text) !important;
+  background: rgb(6 10 24 / 72%) !important;
+  border: 1px solid rgb(148 163 255 / 25%) !important;
+  border-radius: 14px;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 3%);
+  transition: border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+}
+
+.cf-careerfit-theme textarea::placeholder {
+  color: #7581a5 !important;
+}
+
+.cf-careerfit-theme textarea:focus {
+  border-color: var(--cf-violet) !important;
+  box-shadow: 0 0 0 3px rgb(155 140 255 / 14%), 0 0 28px rgb(99 102 241 / 10%);
+  outline: none;
+}
+
+.cf-careerfit-theme button,
+.cf-careerfit-theme a {
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+}
+
+.cf-careerfit-theme button:hover:not(:disabled),
+.cf-careerfit-theme a:hover {
+  transform: translateY(-1px);
+}
+
+.cf-careerfit-theme form > div:first-child button,
+.cf-careerfit-theme .cf-careerfit-frame a[href="/dashboard"] {
+  border-radius: 999px;
+}
+
+.cf-careerfit-theme .cf-careerfit-frame [class*="shadow-sw"] {
+  box-shadow: 0 14px 36px rgb(0 0 0 / 18%), inset 0 1px 0 rgb(255 255 255 / 3%) !important;
+}
+
+.cf-careerfit-theme [class*="bg-emerald-50"],
+.cf-careerfit-theme [class*="bg-emerald-100"] {
+  color: #a8f3c6 !important;
+  background: rgb(16 185 129 / 12%) !important;
+}
+
+.cf-careerfit-theme [class*="bg-rose-50"],
+.cf-careerfit-theme [class*="bg-rose-100"] {
+  color: #ffb4c2 !important;
+  background: rgb(244 63 94 / 12%) !important;
+}
+
+.cf-careerfit-theme [class*="text-emerald"] { color: #a8f3c6 !important; }
+.cf-careerfit-theme [class*="text-rose"] { color: #ffb4c2 !important; }
+
+.cf-careerfit-theme .cf-careerfit-frame > div:nth-child(2) > div:first-child {
+  border-radius: 16px;
+  background: linear-gradient(115deg, rgb(103 80 220 / 12%), rgb(39 125 230 / 8%)) !important;
+}
+
+/* Dashboard theme: preserve all tile actions and content, only restyle the shell/cards. */
+.cf-dashboard-theme {
+  min-height: 100vh;
+  padding: 1px;
+}
+
+.cf-dashboard-theme > div {
+  background: transparent !important;
+  border-color: var(--cf-line) !important;
+  border-radius: 24px;
+  box-shadow: 0 24px 90px rgb(0 0 0 / 28%);
+  overflow: hidden;
+}
+
+.cf-dashboard-theme [class*="bg-canvas"],
+.cf-dashboard-theme [class*="bg-white"],
+.cf-dashboard-theme [class*="bg-paper"] {
+  background-color: var(--cf-panel) !important;
+}
+
+.cf-dashboard-theme [class*="border-ink"] {
+  border-color: var(--cf-line) !important;
+}
+
+.cf-dashboard-theme [class*="text-ink"] { color: var(--cf-text) !important; }
+.cf-dashboard-theme [class*="text-steel"] { color: var(--cf-muted) !important; }
+
+.cf-dashboard-theme a[class*="bg-primary"],
+.cf-dashboard-theme button[class*="bg-primary"] {
+  box-shadow: 0 0 24px rgb(96 104 255 / 16%);
+}
+
+/* Landing page */
+.cf-home-hero {
+  color: var(--cf-text);
+  background:
+    radial-gradient(ellipse at 15% 20%, rgb(105 75 255 / 24%), transparent 32rem),
+    radial-gradient(ellipse at 82% 70%, rgb(28 139 255 / 18%), transparent 34rem),
+    var(--cf-night) !important;
+  overflow: hidden;
+}
+
+.cf-home-hero::before,
+.cf-home-hero::after {
+  content: '';
+  position: absolute;
+  width: 28rem;
+  height: 28rem;
+  border: 1px solid rgb(142 132 255 / 14%);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: cf-orbit 28s linear infinite;
+}
+
+.cf-home-hero::before { top: -14rem; left: -8rem; }
+.cf-home-hero::after { right: -12rem; bottom: -18rem; animation-direction: reverse; }
+
+.cf-home-panel {
+  border-color: rgb(148 163 255 / 24%) !important;
+  border-radius: 28px;
+  background: linear-gradient(145deg, rgb(17 23 46 / 92%), rgb(8 12 27 / 96%)) !important;
+  box-shadow: 0 30px 100px rgb(0 0 0 / 35%), 0 0 80px rgb(99 102 241 / 12%) !important;
+  overflow: hidden;
+  animation: cf-rise-in 720ms cubic-bezier(.2,.8,.2,1) both;
+}
+
+.cf-home-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--cf-violet), var(--cf-cyan), var(--cf-blue), transparent);
+}
+
+.cf-home-eyebrow {
+  color: #c7c0ff;
+  border-color: rgb(155 140 255 / 28%);
+  border-radius: 999px;
+  background: rgb(123 97 255 / 9%);
+  box-shadow: 0 0 30px rgb(123 97 255 / 10%);
+}
+
+.cf-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--cf-cyan);
+  box-shadow: 0 0 12px rgb(124 231 255 / 85%);
+}
+
+.cf-home-title {
+  max-width: 14ch;
+  color: #f4f5ff !important;
+  text-wrap: balance;
+  text-shadow: 0 0 38px rgb(143 122 255 / 18%);
+}
+
+.cf-home-description {
+  color: #aeb9dc;
+  text-wrap: balance;
+}
+
+.cf-home-panel a {
+  border-radius: 999px !important;
+  min-height: 48px;
+  padding-inline: 1.5rem;
+}
+
+.cf-home-panel a:last-of-type {
+  color: #fff !important;
+  border-color: transparent !important;
+  background: linear-gradient(100deg, #7058ed, #337ff0) !important;
+  box-shadow: 0 8px 30px rgb(86 100 240 / 30%);
+}
+
+.cf-home-panel a:last-of-type:hover {
+  box-shadow: 0 10px 36px rgb(86 100 240 / 48%);
+}
+
+.cf-home-panel a:not(:last-of-type) {
+  color: #d9def7 !important;
+  border-color: rgb(148 163 255 / 25%) !important;
+  background: rgb(255 255 255 / 3%) !important;
+}
+
+@keyframes cf-rise-in {
+  from { opacity: 0; transform: translateY(16px) scale(.99); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes cf-orbit {
+  from { transform: rotate(0deg) translateX(8px); }
+  to { transform: rotate(360deg) translateX(8px); }
+}
+
+@media (max-width: 640px) {
+  .cf-home-title { font-size: clamp(2.7rem, 13vw, 4.5rem); }
+  .cf-home-panel { min-height: 75vh; padding-inline: 1.25rem; }
+  .cf-home-description { font-size: .95rem; }
+  .cf-careerfit-theme .cf-careerfit-frame { border-radius: 16px; }
+  .cf-dashboard-theme > div { border-radius: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cf-home-panel,
+  .cf-careerfit-frame,
+  .cf-home-hero::before,
+  .cf-home-hero::after { animation: none !important; }
+}
+
+/* Results enter in a gentle stagger so the analysis remains readable rather than flashy. */
+.cf-careerfit-theme form,
+.cf-careerfit-theme .cf-careerfit-frame > div:nth-last-child(1) > div {
+  animation: cf-rise-in 520ms cubic-bezier(.2,.8,.2,1) both;
+}
+
+.cf-careerfit-theme .cf-careerfit-frame [class*="grid-cols-1"] > * {
+  transition: border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+}
+
+.cf-careerfit-theme .cf-careerfit-frame [class*="grid-cols-1"] > *:hover {
+  border-color: rgb(155 140 255 / 36%) !important;
+  box-shadow: 0 16px 38px rgb(0 0 0 / 24%), 0 0 24px rgb(105 75 255 / 7%) !important;
+}

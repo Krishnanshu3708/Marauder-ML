@@ -3,12 +3,11 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ListNumbers, SquaresFour } from '@phosphor-icons/react';
-import { CommunityLinks } from '@/components/common/community-links';
+import { ListNumbers, Sparkle, SquaresFour } from '@phosphor-icons/react';
 import { buttonClass } from '@/components/ui/button';
 import { PageFrame } from '@/components/ui/page-frame';
 import { PageHeader } from '@/components/ui/page-header';
-import { APP_VERSION } from '@/lib/config/version';
+import { APP_VERSION, APP_NAME } from '@/lib/config/version';
 import { useTranslations } from '@/lib/i18n';
 
 export const SwissGrid = ({
@@ -46,10 +45,17 @@ export const SwissGrid = ({
       <div className="p-4 bg-canvas flex flex-wrap justify-between items-center gap-4 font-mono text-xs text-primary border-t border-ink shrink-0 relative z-30">
         <div className="flex items-center gap-2">
           <Image src="/logo.svg" alt="" width={20} height={20} className="w-5 h-5" />
-          <span className="uppercase font-bold">Resume Matcher</span>
+          <span className="uppercase font-bold">{APP_NAME}</span>
           <span className="text-steel">v{APP_VERSION}</span>
         </div>
         <div className="flex flex-wrap items-center gap-4">
+          <Link
+            href="/careerfit-ml"
+            className={buttonClass({ variant: 'outline', className: 'min-w-36' })}
+          >
+            <Sparkle aria-hidden="true" />
+            Marauder ML
+          </Link>
           <Link
             href="/queue"
             className={buttonClass({ variant: 'outline', className: 'min-w-36' })}
@@ -75,7 +81,21 @@ export const SwissGrid = ({
 
       {/* Community strip - a slim second row, same canvas and z-layer as the footer */}
       <div className="px-4 py-2 bg-canvas border-t border-ink shrink-0 relative z-30">
-        <CommunityLinks variant="strip" />
+        <div className="flex flex-wrap items-center justify-between text-xs font-mono text-steel w-full">
+          <div className="flex items-center gap-2">
+            <span className="font-bold uppercase text-ink">Marauder ML</span>
+            <span>•</span>
+            <span>I Solemnly Swear I Am Qualified</span>
+            <span>•</span>
+            <span>Resume Matching &amp; Skill Gap Analysis</span>
+          </div>
+          <div className="flex items-center gap-4">
+            <Link href="/careerfit-ml" className="text-primary hover:underline font-bold uppercase inline-flex items-center gap-1">
+              <Sparkle aria-hidden="true" className="size-3.5" />
+              ML Studio
+            </Link>
+          </div>
+        </div>
       </div>
     </PageFrame>
   );

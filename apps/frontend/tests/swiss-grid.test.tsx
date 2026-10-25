@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { SwissGrid } from '@/components/home/swiss-grid';
-import { APP_VERSION } from '@/lib/config/version';
+import { APP_VERSION, APP_NAME } from '@/lib/config/version';
 
 vi.mock('@/lib/i18n', () => ({
   useTranslations: () => ({ t: (key: string) => key }),
@@ -13,7 +13,7 @@ describe('SwissGrid', () => {
 
     const version = screen.getByText(`v${APP_VERSION}`);
     expect(version).toHaveClass('text-steel');
-    const brand = screen.getByText('Resume Matcher');
+    const brand = screen.getByText(APP_NAME);
     expect(version.parentElement).toBe(brand.parentElement);
     // The footer row sets the label face for the brand line and the version alike.
     expect(brand.closest('.font-mono')).toContainElement(version);
@@ -40,20 +40,13 @@ describe('SwissGrid', () => {
     expect(link.parentElement).toHaveClass('flex-wrap');
   });
 
-  it('closes the page with a slim community strip under the footer row', () => {
+  it('closes the page with a slim Marauder ML strip under the footer row', () => {
     render(<SwissGrid>{null}</SwissGrid>);
 
-    const strip = screen.getByRole('link', { name: 'community.follow' }).closest('div');
-    for (const name of [
-      'community.follow',
-      'community.star',
-      'community.sponsor',
-      'community.discord',
-      'community.contributors',
-    ]) {
-      expect(strip).toContainElement(screen.getByRole('link', { name }));
-    }
-    // A separate row after the footer, so the footer's own layout is untouched.
+    const mlStudioLink = screen.getByRole('link', { name: /ML Studio/i });
+    expect(mlStudioLink).toHaveAttribute('href', '/careerfit-ml');
+
+    const strip = mlStudioLink.closest('div.border-t') as HTMLElement;
     const footer = screen.getByRole('link', { name: 'nav.queue' }).closest('div.border-t');
     expect(footer).not.toContainElement(strip);
     expect(footer!.nextElementSibling).toBe(strip);

@@ -1,0 +1,27 @@
+{
+  "timestamp_utc": "2026-10-23T22:00:03.725395+00:00",
+  "dataset_source": "train.csv",
+  "total_training_samples": 288,
+  "positive_samples": 147,
+  "negative_samples": 141,
+  "vocabulary_size": 5000,
+  "model_type": "LogisticRegression",
+  "vectorizer_type": "TfidfVectorizer",
+  "c_regularization": 1.0,
+  "max_features": 5000,
+  "random_state": 42,
+  "cross_validation": {
+    "folds": 5,
+    "accuracy_mean": 0.7258,
+    "accuracy_std": 0.0363,
+    "precision_mean": 0.7174,
+    "precision_std": 0.0478,
+    "recall_mean": 0.7756,
+    "recall_std": 0.0761,
+    "f1_mean": 0.742,
+    "f1_std": 0.0348,
+    "roc_auc_mean": 0.838,
+    "roc_auc_std": 0.0295
+  },
+  "status": "trained_successfully"
+}

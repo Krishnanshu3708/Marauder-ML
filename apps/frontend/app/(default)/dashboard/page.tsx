@@ -559,6 +559,7 @@ export default function DashboardPage() {
   const showLlmAlert = Boolean(masterResumeId) && !isLlmConfigured && !agentMode && !statusLoading;
 
   return (
+    <div className="cf-dashboard-theme">
     <SwissGrid
       banner={
         (listError || showLlmAlert) && (
@@ -977,5 +978,6 @@ export default function DashboardPage() {
         showCancelButton={false}
       />
     </SwissGrid>
+    </div>
   );
 }

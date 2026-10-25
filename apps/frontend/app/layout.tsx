@@ -39,21 +39,6 @@ const raleway = Raleway({
 });
 
 // CJK fallbacks for Chinese/Japanese/Korean resume content.
-//
-// `preload: false` because the CJK unicode-ranges are not preloadable anyway
-// (Google exposes no `chinese-simplified` subset to next/font) and we don't
-// want to ship a large font to users who never render CJK. Turbopack already
-// skips preloading these, but the legacy webpack font path errors on a
-// preloaded font declared without `subsets`, so this keeps both building.
-//
-// No `weight` array: Google serves these as variable fonts, so listing four
-// weights emitted four identical @font-face blocks per unicode subset — 405
-// rules and 372 KB of render-blocking CSS for one face, ~4x duplication.
-//
-// All three regional faces are loaded because Noto Sans SC covers only 0.7% of
-// Hangul (Korean rendered as tofu) while covering ~93% of kana (hijacking
-// Japanese with Simplified-Chinese glyph forms). The per-locale ordering lives
-// in lib/types/template-settings.ts.
 const notoSansSC = Noto_Sans_SC({
   variable: '--font-noto-sans-sc',
   display: 'swap',
@@ -73,10 +58,10 @@ const notoSansJP = Noto_Sans_JP({
 });
 
 export const metadata: Metadata = {
-  title: 'Resume Matcher',
-  description: 'Build your resume with Resume Matcher',
-  applicationName: 'Resume Matcher',
-  keywords: ['resume', 'matcher', 'job', 'application'],
+  title: 'Marauder ML — Resume Matching & Skill Gap Analysis',
+  description: 'Marauder ML: I Solemnly Swear I Am Qualified — Intelligent Resume Matching & Skill Gap Analysis Engine',
+  applicationName: 'Marauder ML',
+  keywords: ['resume', 'matcher', 'job', 'application', 'machine learning', 'skill gap', 'marauder ml'],
 };
 
 export const viewport: Viewport = { themeColor: THEME_COLOR };

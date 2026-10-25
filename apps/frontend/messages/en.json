@@ -35,8 +35,8 @@
     "resumeDeleted": "This resume was deleted. Upload or select another resume."
   },
   "home": {
-    "brandLine1": "Resume",
-    "brandLine2": "Matcher",
+    "brandLine1": "Marauder",
+    "brandLine2": "ML",
     "docs": "Docs",
     "launchApp": "Launch App"
   },
@@ -48,7 +48,7 @@
     "discord": "Discord",
     "joinDiscord": "Join Discord",
     "contributors": "Contributors",
-    "settingsPrompt": "Enjoying Resume Matcher?",
+    "settingsPrompt": "Enjoying Marauder ML?",
     "sponsorProject": "Sponsor the project",
     "joinTheDiscord": "Join the Discord",
     "aboutTitle": "About"
@@ -431,7 +431,7 @@
           "website": "Website"
         },
         "placeholders": {
-          "projectName": "Resume Matcher",
+          "projectName": "Marauder ML",
           "role": "Creator",
           "years": "Mar 2023",
           "github": "github.com/username/project",

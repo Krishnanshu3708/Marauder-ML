@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { Info } from '@phosphor-icons/react';
 import { CommunityLinks } from '@/components/common/community-links';
-import { APP_VERSION } from '@/lib/config/version';
+import { APP_VERSION, APP_NAME } from '@/lib/config/version';
 import { useTranslations } from '@/lib/i18n';
 
 /** A compact line at the top of Settings: a short ask, then Sponsor and Discord. */
@@ -35,7 +35,7 @@ export function SettingsAbout() {
 
       <div className="flex items-center gap-2 font-mono text-xs text-primary">
         <Image src="/logo.svg" alt="" width={20} height={20} className="w-5 h-5" />
-        <span className="uppercase font-bold">Resume Matcher</span>
+        <span className="uppercase font-bold">{APP_NAME}</span>
         <span className="text-steel">v{APP_VERSION}</span>
       </div>
 

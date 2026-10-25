@@ -25,6 +25,7 @@ from app.pdf import close_pdf_renderer
 from app.routers import (
     applications_router,
     ats_router,
+    careerfit_ml_router,
     chatgpt_callback_router,
     chatgpt_router,
     config_router,
@@ -97,8 +98,8 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
 
 
 app = FastAPI(
-    title="Resume Matcher API",
-    description="AI-powered resume tailoring for job descriptions",
+    title="Marauder ML API",
+    description="Marauder ML — I Solemnly Swear I Am Qualified: Resume Matching and Skill Gap Analysis",
     version=__version__,
     lifespan=lifespan,
 )
@@ -140,6 +141,7 @@ app.include_router(resume_wizard_router, prefix="/api/v1")
 app.include_router(ats_router, prefix="/api/v1")
 app.include_router(chatgpt_router, prefix="/api/v1")
 app.include_router(writing_router, prefix="/api/v1")
+app.include_router(careerfit_ml_router, prefix="/api/v1")
 # OpenAI redirects to 127.0.0.1:<port>/auth/callback; the path is fixed.
 app.include_router(chatgpt_callback_router)
 
