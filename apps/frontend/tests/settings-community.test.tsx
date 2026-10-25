@@ -15,8 +15,8 @@ describe('settings community strip', () => {
     expect(screen.getByText('community.settingsPrompt')).toBeInTheDocument();
     const sponsor = screen.getByRole('link', { name: 'community.sponsorProject' });
     const discord = screen.getByRole('link', { name: 'community.joinTheDiscord' });
-    expect(sponsor).toHaveAttribute('href', 'https://github.com/sponsors/srbhr');
-    expect(discord).toHaveAttribute('href', 'https://dsc.gg/resume-matcher');
+    expect(sponsor).toHaveAttribute('href', 'https://github.com/Krishnanshu3708');
+    expect(discord).toHaveAttribute('href', 'https://github.com/Krishnanshu3708/Marauder-ML');
     expect(screen.getAllByRole('link')).toHaveLength(2);
   });
 });
@@ -29,11 +29,11 @@ describe('settings About section', () => {
     expect(screen.getByText(`v${APP_VERSION}`)).toBeInTheDocument();
     const hrefs = screen.getAllByRole('link').map((link) => link.getAttribute('href'));
     expect(hrefs).toEqual([
-      'https://github.com/srbhr',
-      'https://github.com/srbhr/Resume-Matcher',
-      'https://github.com/sponsors/srbhr',
-      'https://dsc.gg/resume-matcher',
-      'https://github.com/srbhr/Resume-Matcher/graphs/contributors',
+      'https://github.com/Krishnanshu3708',
+      'https://github.com/Krishnanshu3708/Marauder-ML',
+      'https://github.com/Krishnanshu3708',
+      'https://github.com/Krishnanshu3708/Marauder-ML',
+      'https://github.com/Krishnanshu3708/Marauder-ML/graphs/contributors',
     ]);
   });
 });

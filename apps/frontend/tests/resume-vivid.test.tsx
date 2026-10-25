@@ -8,7 +8,7 @@ import type { ResumeData } from '@/components/dashboard/resume-component';
 vi.mock('@/lib/i18n', () => ({ useTranslations: () => ({ t: (k: string) => k }) }));
 
 const data: ResumeData = {
-  personalInfo: { name: 'Saurabh Rai', title: 'Solutions Architect', email: 'a@b.com' },
+  personalInfo: { name: 'Krishnanshu Gupta', title: 'Solutions Architect', email: 'a@b.com' },
   workExperience: [
     {
       id: 1,
@@ -24,8 +24,8 @@ const data: ResumeData = {
 describe('ResumeVivid', () => {
   it('splits the name into two tones and renders company + bullet', () => {
     render(<ResumeVivid data={data} />);
-    expect(screen.getByText('Saurabh')).toBeInTheDocument(); // first token only
-    expect(screen.getByText('Rai')).toBeInTheDocument(); // remaining tokens
+    expect(screen.getByText('Krishnanshu')).toBeInTheDocument(); // first token only
+    expect(screen.getByText('Gupta')).toBeInTheDocument(); // remaining tokens
     expect(screen.getByText('Apideck')).toBeInTheDocument();
     expect(screen.getByText('Solutions Architect')).toBeInTheDocument();
     expect(screen.getByText('Lead client demos.')).toBeInTheDocument();
@@ -38,7 +38,7 @@ describe('ResumeVivid', () => {
 
   it('does not render an orphaned leading pipe when years is missing but location exists', () => {
     const noYears: ResumeData = {
-      personalInfo: { name: 'Saurabh Rai' },
+      personalInfo: { name: 'Krishnanshu Gupta' },
       workExperience: [{ id: 1, title: 'Engineer', company: 'Apideck', location: 'Remote' }],
     } as ResumeData;
     render(<ResumeVivid data={noYears} />);

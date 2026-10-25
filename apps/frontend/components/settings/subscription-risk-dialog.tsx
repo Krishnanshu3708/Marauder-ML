@@ -19,7 +19,7 @@ import { useTranslations } from '@/lib/i18n';
 export type SubscriptionProvider = 'claude_cli' | 'chatgpt';
 
 export const AGENT_SETUP_URL =
-  'https://github.com/srbhr/Resume-Matcher/blob/main/SETUP.md#use-resume-matcher-with-a-coding-agent';
+  'https://github.com/Krishnanshu3708/Marauder-ML/blob/main/SETUP.md#use-resume-matcher-with-a-coding-agent';
 
 const COPY: Record<SubscriptionProvider, string> = {
   claude_cli: 'settings.subscriptionRisk.claudeCli',

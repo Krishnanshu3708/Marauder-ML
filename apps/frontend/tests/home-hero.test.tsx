@@ -33,14 +33,14 @@ describe('Hero entrance', () => {
     render(<Hero />);
     const launch = screen.getByRole('link', { name: 'home.launchApp' });
     const follow = screen.getByRole('link', { name: 'community.follow' });
-    expect(follow).toHaveAttribute('href', 'https://github.com/srbhr');
+    expect(follow).toHaveAttribute('href', 'https://github.com/Krishnanshu3708');
     expect(screen.getByRole('link', { name: 'community.sponsor' })).toHaveAttribute(
       'href',
-      'https://github.com/sponsors/srbhr'
+      'https://github.com/Krishnanshu3708'
     );
     expect(screen.getByRole('link', { name: 'community.discord' })).toHaveAttribute(
       'href',
-      'https://dsc.gg/resume-matcher'
+      'https://github.com/Krishnanshu3708/Marauder-ML'
     );
     // The row follows the button row, and its links are quiet text (steel, not a button fill).
     expect(launch.parentElement!.compareDocumentPosition(follow)).toBe(

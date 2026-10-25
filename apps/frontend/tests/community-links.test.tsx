@@ -20,21 +20,21 @@ const names = (variant: CommunityLinksVariant) => {
 describe('community links', () => {
   it('points the five links at the owner profile, repo, sponsors, contributors and Discord', () => {
     expect(COMMUNITY_LINKS).toEqual({
-      follow: 'https://github.com/srbhr',
-      star: 'https://github.com/srbhr/Resume-Matcher',
-      sponsor: 'https://github.com/sponsors/srbhr',
-      contributors: 'https://github.com/srbhr/Resume-Matcher/graphs/contributors',
-      discord: 'https://dsc.gg/resume-matcher',
+      follow: 'https://github.com/Krishnanshu3708',
+      star: 'https://github.com/Krishnanshu3708/Marauder-ML',
+      sponsor: 'https://github.com/Krishnanshu3708',
+      contributors: 'https://github.com/Krishnanshu3708/Marauder-ML/graphs/contributors',
+      discord: 'https://github.com/Krishnanshu3708/Marauder-ML',
     });
 
     render(<CommunityLinks variant="strip" />);
     const hrefOf = (name: string) => screen.getByRole('link', { name }).getAttribute('href');
-    expect(hrefOf('Follow @srbhr')).toBe('https://github.com/srbhr');
-    expect(hrefOf('Star')).toBe('https://github.com/srbhr/Resume-Matcher');
-    expect(hrefOf('Sponsor')).toBe('https://github.com/sponsors/srbhr');
-    expect(hrefOf('Discord')).toBe('https://dsc.gg/resume-matcher');
+    expect(hrefOf('Follow @Krishnanshu')).toBe('https://github.com/Krishnanshu3708');
+    expect(hrefOf('Star')).toBe('https://github.com/Krishnanshu3708/Marauder-ML');
+    expect(hrefOf('Sponsor')).toBe('https://github.com/Krishnanshu3708');
+    expect(hrefOf('Discord')).toBe('https://github.com/Krishnanshu3708/Marauder-ML');
     expect(hrefOf('Contributors')).toBe(
-      'https://github.com/srbhr/Resume-Matcher/graphs/contributors'
+      'https://github.com/Krishnanshu3708/Marauder-ML/graphs/contributors'
     );
   });
 
@@ -53,12 +53,12 @@ describe('community links', () => {
   });
 
   it('shows each placement its own set of links', () => {
-    expect(names('hero')).toEqual(['Follow @srbhr', 'Sponsor', 'Discord']);
-    expect(names('strip')).toEqual(['Follow @srbhr', 'Star', 'Sponsor', 'Discord', 'Contributors']);
+    expect(names('hero')).toEqual(['Follow @Krishnanshu', 'Sponsor', 'Discord']);
+    expect(names('strip')).toEqual(['Follow @Krishnanshu', 'Star', 'Sponsor', 'Discord', 'Contributors']);
     expect(names('builder')).toEqual(['Join Discord', 'Star on GitHub']);
     expect(names('settings')).toEqual(['Sponsor the project', 'Join the Discord']);
     expect(names('about')).toEqual([
-      'Follow @srbhr',
+      'Follow @Krishnanshu',
       'Star on GitHub',
       'Sponsor',
       'Join Discord',

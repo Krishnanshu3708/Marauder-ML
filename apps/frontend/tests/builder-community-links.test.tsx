@@ -58,8 +58,8 @@ describe('builder community links', () => {
 
     const discord = screen.getByRole('link', { name: 'community.joinDiscord' });
     const star = screen.getByRole('link', { name: 'community.starOnGithub' });
-    expect(discord).toHaveAttribute('href', 'https://dsc.gg/resume-matcher');
-    expect(star).toHaveAttribute('href', 'https://github.com/srbhr/Resume-Matcher');
+    expect(discord).toHaveAttribute('href', 'https://github.com/Krishnanshu3708/Marauder-ML');
+    expect(star).toHaveAttribute('href', 'https://github.com/Krishnanshu3708/Marauder-ML');
     // Quiet ghost actions inside the page header, not the resume canvas, and no new footer.
     const header = container.querySelector('header');
     expect(header).toContainElement(discord);

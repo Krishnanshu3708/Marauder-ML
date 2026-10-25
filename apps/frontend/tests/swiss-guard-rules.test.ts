@@ -50,7 +50,7 @@ describe('Swiss guard rules', () => {
     '<div className="bg-primary text-white border-ink p-3 gap-4 px-6 mt-12" />',
     '/* bg-[#1D4ED8] rounded-lg */ <div />',
     '// shadow-md and #ffffff in a comment\n<div />',
-    '<a href="https://github.com/srbhr/Resume-Matcher">x</a>',
+    '<a href="https://github.com/Krishnanshu3708/Marauder-ML">x</a>',
     "import { m, AnimatePresence } from 'motion/react';",
     "<p>{'// '}subtitle</p>",
     '<div className="transition-colors animate-spin top-5 w-2.5" />',
